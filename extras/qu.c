@@ -6,7 +6,7 @@ int main(){
         printf(" C is wow");
     }
     else{
-        printf("Chal bhakk madarchod");
+        printf("Chal bhakk");
     }
     return 0;
 }
