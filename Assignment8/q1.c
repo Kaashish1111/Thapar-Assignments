@@ -1,7 +1,7 @@
 #include<stdio.h>
 int main(){
     FILE *fp;
-    fp = fopen("test.txt","r");
+    fp = fopen("story.txt","r");
     fclose(fp);
     return 0;
 }
