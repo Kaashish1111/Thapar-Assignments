@@ -1,57 +1,49 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-void getUnion(int a[], int n, int b[], int m) {
-    int i, j, k;
-    i = j = k = 0;
-    int c[100] = {0}; // assuming maximum size of array is 100
-
-    while (i < n && j < m) {
-        if (a[i] < b[j]) {
-            if (!c[a[i]]) {
-                c[k++] = a[i];
+#include<stdio.h>
+int main(){
+    int a[50],a2[50];
+    int size_1,size_2;
+    printf("Enter the no of elements you want in an array: ");
+    scanf("%d",&size_1);
+    printf("Enter the elements of array: ");
+    for(int i=0;i<size_1;i++){
+        scanf("%d",&a[i]);
+    }
+    printf("Enter the no of elements you want in another array: ");
+    scanf("%d",&size_2);
+    printf("Now enter the elemnts of another array: ");
+    for(int j=0;j<size_2;j++){
+        scanf("%d",&a2[j]);
+    }
+    printf("Now printing the merged array: ");
+    int merged_array[size_1+size_2];
+    for(int m=0;m<size_1;m++){
+        merged_array[m]=a[m];
+    }
+    for(int n=0;n<size_2;n++){
+        merged_array[size_1+n]=a2[n];
+    }
+    // Actually printing the merged array
+    for(int k=0;k<size_1+size_2;k++){
+        printf("%d\t",merged_array[k]);
+    }
+     // removing duplicates
+     int unique_count=0;
+    for (int i = 0; i < size_1+size_2; i++) {
+        int j;
+        for (j = 0; j < unique_count; j++) {
+            if (merged_array[i] == merged_array[j]) {
+                break;
             }
-            i++;
-        } else if (b[j] < a[i]) {
-            if (!c[b[j]]) {
-                c[k++] = b[j];
-            }
-            j++;
-        } else {
-            if (!c[a[i]]) {
-                c[k++] = a[i];
-            }
-            i++;
-            j++;
+        }
+        if (j == unique_count) {
+            merged_array[unique_count] = merged_array[i];
+            unique_count++;
         }
     }
-
-    // print remaining elements of a[] and b[]
-    while (i < n) {
-        if (!c[a[i]]) {
-            c[k++] = a[i];
-        }
-        i++;
+    printf("Array after removing duplicates:\n");
+    for (int i = 0; i < unique_count; i++) {
+        printf("%d ", merged_array[i]);
     }
 
-    while (j < m) {
-        if (!c[b[j]]) {
-            c[k++] = b[j];
-        }
-        j++;
-    }
-
-    printf("Number of elements after union operation: %d\n", k);
-    printf("The union set of both arrays is : ");
-    for (int i = 0; i < k; i++) {
-        printf("%d ", c[i]);
-    }
-    printf("\n");
-}
-
-int main() {
-    int a[] = {1, 2,3};
-    int b[] = {9, 4, 5, 6, 8, 10, 4, 6, 5, 4};
-    getUnion(a, 3, b, 10);
     return 0;
 }

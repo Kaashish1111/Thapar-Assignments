@@ -1,26 +1,38 @@
 #include <stdio.h>
+int main()
+{
+    int a[50], a2[50], c[50];
+    int size_1, size_2, count = 0;
 
-void findIntersection(int a[], int b[], int n, int m) {
-    int i, j, count = 0;
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < m; j++) {
-            if (a[i] == b[j]) {
-                printf("%d ", a[i]);
+    printf("Enter the number of elements you want in the first array: ");
+    scanf("%d", &size_1);
+    printf("Enter the elements of the first array: ");
+    for (int i = 0; i < size_1; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    printf("Enter the number of elements you want in the second array: ");
+    scanf("%d", &size_2);
+    printf("Enter the elements of the second array: ");
+    for (int j = 0; j < size_2; j++) {
+        scanf("%d", &a2[j]);
+    }
+
+    for (int i = 0; i < size_1; i++) {
+        for (int j = 0; j < size_2; j++) {
+            if (a[i] == a2[j]) {
+                c[count] = a[i];
                 count++;
                 break;
             }
         }
     }
-    if (count == 0) {
-        printf("No common elements found.");
-    }
-}
 
-int main() {
-    int a[] = {1, 2, 3, 4, 5};
-    int b[] = {5, 6, 7, 8, 9};
-    int n = sizeof(a) / sizeof(a[0]);
-    int m = sizeof(b) / sizeof(b[0]);
-    findIntersection(a, b, n, m);
+    printf("The common elements are: ");
+    for (int i = 0; i < count; i++) {
+        printf("%d ", c[i]);
+    }
+    printf("\n");
+
     return 0;
 }
